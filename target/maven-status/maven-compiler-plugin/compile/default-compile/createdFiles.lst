@@ -1,0 +1,5 @@
+com\example\demo\service\UserService.class
+com\example\demo\dto\User.class
+com\example\demo\controller\TestController.class
+com\example\demo\repository\UserRepository.class
+com\example\demo\WebhostApplication.class
