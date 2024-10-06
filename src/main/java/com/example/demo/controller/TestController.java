@@ -19,19 +19,19 @@ public class TestController {
     public User addUser(@RequestBody User user){
        return userService.addUser(user);
    }
-   @GetMapping("/user/{id}")
+   @GetMapping("/user")
     public  User getUser(@RequestParam String id){
         return userService.getUser(id);
    }
-   @GetMapping("")
+   @GetMapping("/all")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
    }
-   @PutMapping
+   @PutMapping("/update")
     public  User updateUser(@RequestBody User user){
         return userService.updateUser(user);
    }
-   @DeleteMapping("/deteleUser/{id}")
+   @DeleteMapping("/delete")
     public String deleteUser(@RequestParam String id){
         return userService.deleteUser(id);
    }

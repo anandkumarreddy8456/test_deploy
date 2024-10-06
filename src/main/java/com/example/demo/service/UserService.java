@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -13,16 +14,19 @@ public class UserService {
     private UserRepository userRepository;
 
     public User addUser(User user){
+        String randomID = UUID.randomUUID().toString();
+        user.setId(randomID);
         return userRepository.insert(user);
     }
-    public User updateUser(User user){
-        User userold=userRepository.findById(user.getId()).get();
-        userold.setName(user.getName());
-        userold.setName(user.getName());
-        userold.setRole(user.getRole());
-        userRepository.deleteById(user.getId());
-        return userRepository.insert(userold);
+    public User updateUser(User user) {
+        User userOld = userRepository.findById(user.getId()).orElseThrow(() -> new RuntimeException("User not found"));
+        userOld.setName(user.getName());
+        userOld.setRole(user.getRole());
+        userOld.setCost(user.getCost());
+        // Save the updated user
+        return userRepository.save(userOld);
     }
+
     public String deleteUser(String id){
         userRepository.deleteById(id);
         return "User Successfully Deleted";
